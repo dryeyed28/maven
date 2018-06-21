@@ -1,0 +1,4 @@
+#Tomcat publish data
+#Thu Jun 21 10:06:04 KST 2018
+org.eclipse.jst.jee.server\:com.kitri.aa=D\:\\apache-tomcat-8.5.30-windows-x64\\apache-tomcat-8.5.30\\wtpwebapps\\com.kitri.aa
+org.eclipse.jst.jee.server\:bbb=D\:\\apache-tomcat-8.5.30-windows-x64\\apache-tomcat-8.5.30\\wtpwebapps\\bbb
