@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kitri.shop.seller.ProductMapper">
+	<resultMap type="com.kitri.shop.seller.Product" id="ProdResult">
+		<result column="num" property="num" />
+		<result column="name" property="name" />
+		<result column="quantity" property="quantity" />
+		<result column="info" property="info" />
+		<result column="price" property="price" />
+		<result column="seller_id" property="seller_id" />
+		<result column="category1_id" property="category1_id" />
+		<result column="category2_id" property="category2_id" />
+		<result column="category3_id" property="category3_id" />
+	</resultMap>
+	<insert id="insert" parameterType="com.kitri.shop.seller.Product">
+		insert into shopproduct
+		values(#{num}, #{name}, #{quantity}, #{info}, #{price},
+		#{seller_id}, #{category1_id}, #{category2_id}, #{category3_id})
+	</insert>
+	<select id="selectByNum" parameterType="java.lang.Integer"
+	resultMap="ProdResult">
+		select * from shopproduct where num=#{num}
+	</select>
+	<select id="selectByName" parameterType="String"
+	resultMap="ProdResult">
+		select * from shopproduct where name=#{name} order by num
+	</select>
+	<select id="selectByPrice" parameterType="java.util.Map"
+	resultMap="ProdResult">
+	</select>
+	<select id="selectBySellerId" parameterType="String"
+	resultMap="ProdResult">
+		select * from shopproduct where seller_id=#{seller_id} order by num
+	</select>
+	<select id="selectByC1" parameterType="java.lang.Integer"
+	resultMap="ProdResult">
+		select * from shopproduct where category1_id=#{category1_id} order by nums
+	</select>
+	<select id="selectByC2" parameterType="java.lang.Intenger"
+	resultMap="ProdResult">
+		select * from shopproduct
+		where category2_id = #{category2_id} order by num
+	</select>
+	<select id="selectByC3" parameterType="java.lang.Integer"
+	resultMap="ProdResult">
+		select * from shopproduct
+		where category3_id=#{category3_id} order by num
+	</select>
+	<select id="selectAll" resultMap="ProdResult">
+		select * from shopproduct order by num
+	</select>
+	<update id="update" parameterType="com.kitri.shop.seller.Product">
+		update shopproduct set name=#{name}, price=#{price}, info=#{info},
+		quantity=#{quantity}, where num=#{num}
+	</update>
+	<delete id="delete" parameterType="java.lang.Integer">
+		delete shopproduct where num=#{num}
+	</delete>
+	<select id="getNum" resultType="java.lang.Intenger">
+		select seq_shopproduct.nextval form dual
+	</select>
+	</mapper>

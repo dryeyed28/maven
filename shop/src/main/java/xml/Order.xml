@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kitri.shop.order.OrderMapper">
+<resultMap type="com.kitri.shop.order.Order" id="orderResult">
+	<result column="num" property="num"/>
+	<result column="consumer_id" property="consumer_id"/>
+	<result column="pro_num" property="pro_num"/>
+	<result column="quantity" property="quantity"/>
+	<result column="tel" property="tel"/>
+	<result column="address" property="address"/>
+	<result column="result" property="result"/>
+</resultMap>
+<insert id="insert" parameterType="com.kitri.shop.order.Order">
+	insert into shoporder values(seq_shoporder.nextval, #{consumer_id},
+	#{pro_num}, #{quantity}, #{tel}, #{address}, #{result})
+</insert>
+<select id="select" resultMap="orderResult" parameterType="java.lang.Integer">
+	select * from shoporder where num=#{num}
+</select>
+
+<select id="selectAll" resultMap="orderResult" parameterType="java.util.Map">
+	select * from shoporder
+	where consumer_id=#{consumer_id} and result=#{result}
+	order by num
+</select>
+
+<update id="update" parameterType="java.util.Map">
+	update shoporder set result=#{result} where num=#{num}
+</update>
+
+<delete id="delete" parameterType="java.lang.Integer">
+	delete shoporder where num=#{num}
+</delete>
+</mapper>
